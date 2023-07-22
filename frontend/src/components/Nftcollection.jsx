@@ -5,6 +5,8 @@ import { Grid, Button } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import NFTCard from "./NFTCard";
+import TransferDialog from "./TransferDialog";
+import MergeDialog from "./MergeDialog";
 
 const  Nftcollection=()=> {
     const ERC721Query = `query MyQuery($owner: [Identity!]) {
@@ -33,16 +35,46 @@ const  Nftcollection=()=> {
     const [filteredData, SetFilteredData] = useState([]);
     const [mode, setMode] = React.useState('');
     const [selectedNft, setSelectedNft] = useState([]);
+    const [openDialogueMerge, setOpenDialogueMerge] = useState(false);
+    const [openDialogueTransfer, setOpenDialogueTransfer] = useState(false);
+
     const [choiceActive, setChoiceActive] = useState(false);
 
     const { data, loading, error } = useQuery(ERC721Query, variables);
-console.log(selectedNft)
+
+
+const HandleOpenWindow =()=>{
+    console.log(mode)
+    if(selectedNft.length>0)
+    {
+    if (mode === "Merge")
+    {    console.log(mode,"inside merge")
+
+    setOpenDialogueMerge(true);}
+    if (mode === "Transfer")
+    {console.log(mode,"inside Transfer")
+        setOpenDialogueTransfer(true);}
+}}
+      const handleCloseTransfer = () => {
+        setOpenDialogueTransfer(false);
+      };
+      const handleCloseMerge = () => {
+        setOpenDialogueMerge(false);
+      };
+    
+    
     const handleChange = (
         event ,
         newMode,
       ) => {
         setMode(newMode);
       };
+      const handleSenfNFT =()=>{
+
+      }
+      const handleMergeNFT =()=>{
+
+      }
     useEffect(() => {
         if (mode) {
 
@@ -86,9 +118,7 @@ console.log(selectedNft)
         <Grid key={index} container spacing={1}>
           {row.map((nft,indexou) =>
 {      
-console.log(indexou+1)
-console.log(index +1 )
-console.log((indexou+1)*(index+10))
+
         return ( 
             <Grid key={indexou} item xs={3} sm={3} md={3} >
                <NFTCard 
@@ -121,7 +151,11 @@ console.log((indexou+1)*(index+10))
         >
           <ToggleButton value="Merge">Merge</ToggleButton>
           <ToggleButton value="Transfer">Transfer</ToggleButton>
-        </ToggleButtonGroup><Button variant="contained" >Confirm</Button> </Box>
+        </ToggleButtonGroup><Button variant="contained" onClick={HandleOpenWindow} >Confirm</Button> </Box>
+        <TransferDialog open={openDialogueTransfer} handleClose={handleCloseTransfer} handleSenfNFT={handleSenfNFT}></TransferDialog>
+        <MergeDialog open={openDialogueMerge} handleClose={handleCloseMerge} handleMergeNFT={handleMergeNFT} ></MergeDialog>
+        
+        
            </Box>
     
     );
