@@ -19,9 +19,10 @@ export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
         return array; // If the item is not found, return the original array
       };
       
-console.log(selectedNft)
+console.log(tokenNft,"tokenNft")
     return (
-        <Card sx={{m:2,  }}>
+        <Card sx={{m:2,  }}
+        onClick={()=>{window.open(`/nft/${tokenNft.erc6551Accounts[0].tokenAddress}/${tokenNft.erc6551Accounts[0].tokenId}`)}}>
         <CardActionArea>
         <div className="token-img-wrapper">
             
