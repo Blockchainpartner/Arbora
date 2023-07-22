@@ -7,6 +7,15 @@ import { Web3Modal } from "@web3modal/react";
 import { useEffect, useState } from "react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { mainnet, sepolia, polygon } from "wagmi/chains";
+import '../styles.css';
+import { init } from "@airstack/airstack-react";
+init("40ec4c9ceb0d4f7aa4e16db26074ad20");
+
+
+
+
+
+
 
 // 1. Get projectID at https://cloud.walletconnect.com
 if (!process.env.NEXT_PUBLIC_PROJECT_ID) {

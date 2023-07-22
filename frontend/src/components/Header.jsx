@@ -1,11 +1,13 @@
-import { AppBar, Toolbar, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { AppBar, Toolbar } from '@mui/material';
 import { Web3Button, Web3NetworkSwitch } from "@web3modal/react";
+import Image from 'next/image'
+import {Box} from '@mui/material';
 import CustomButton from "../components/CustomButton";
 const Header = () => {
   
 
   return (
-    <AppBar elevation={2} sx={{ backgroundColor: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} position="fixed">
+    <AppBar elevation={0} sx={{ backgroundColor: 'transparent' }} >
       <Toolbar
         sx={{
           display: 'flex',
@@ -15,9 +17,17 @@ const Header = () => {
           justifyContent: 'space-between',
         }}
       >
-
-       <Web3Button></Web3Button>
-      <Web3NetworkSwitch></Web3NetworkSwitch>
+<Image src="/full_logo.png" alt="LOGO" width="224" height="64" />
+<Box  sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          mx: 2,
+        }}>
+ <Box>
+      <Web3NetworkSwitch></Web3NetworkSwitch></Box>
+      <Box>  <Web3Button></Web3Button></Box>
+      </Box>
       </Toolbar>
     
     </AppBar>
