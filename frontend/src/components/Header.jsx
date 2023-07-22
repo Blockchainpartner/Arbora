@@ -7,7 +7,7 @@ const Header = () => {
   
 
   return (
-    <AppBar elevation={0} sx={{ backgroundColor: 'transparent' }} >
+    <AppBar elevation={2} sx={{ backgroundColor: 'white',position:'fixed' }} >
       <Toolbar
         sx={{
           display: 'flex',
@@ -17,7 +17,7 @@ const Header = () => {
           justifyContent: 'space-between',
         }}
       >
-<Image src="/full_logo.png" alt="LOGO" width="224" height="64" />
+<Image src="/full_logo.png" alt="LOGO" width="224" height="69" />
 <Box  sx={{
           display: 'flex',
           flexDirection: 'row',

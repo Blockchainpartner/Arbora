@@ -1,7 +1,7 @@
 {
-  "name": "web3modal-wagmi-react",
+  "name": "Arbora",
   "private": true,
-  "version": "2.6.2",
+  "version": "0.0.1",
   "scripts": {
     "dev": "next dev -p 3002"
   },
