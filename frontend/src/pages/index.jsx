@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import Nftcollection from "../components/Nftcollection";
 import { useAccount } from "wagmi";
 import {Box} from "@mui/material"
+import WalletConnectCard from "../components/WalletConnecrCard";
 
 const MainStyle = styled('div')(() => ({
   marginTop: '100px',
@@ -12,14 +13,14 @@ const MainStyle = styled('div')(() => ({
 }));
 
 export default function HomePage() {
-  const { isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
 
   return (
     <>
 
     <Header></Header>
     <MainStyle>
-    {isConnected?<Nftcollection/>:'loading'}
+    {isConnected?<Nftcollection address={address}/>:<WalletConnectCard></WalletConnectCard>}
 
     </MainStyle>
      

@@ -33,8 +33,7 @@ const TransferDialog = ({ open, handleClose ,handleSenfNFT}) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-Cancel          </Button>
+          <Button onClick={handleClose} color="primary"> Cancel </Button>
           <Button
             onClick={(e) => {
               handleClose();

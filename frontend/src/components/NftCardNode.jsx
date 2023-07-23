@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { Handle, Position } from "reactflow";
 import { Asset } from "@airstack/airstack-react";
-
+import { Box } from "@mui/material";
 import styles from "../styles/NftCardNode.module.css";
+import { Typography,CardActionArea, CardActions,CardContent,Card } from '@mui/material';
 
 function NftCardNode({ data, isConnectable }) {
     const onChange = useCallback((evt) => {
@@ -10,18 +11,24 @@ function NftCardNode({ data, isConnectable }) {
     }, []);
 
     return (
-        <div className={styles.text_updater_node}>
+        <Box elevation={2}>
             <Handle
                 type="target"
                 position={Position.Top}
                 isConnectable={isConnectable}
             />
-            <div>
-                {/* Remplacer ici par ce qu'on veut mettre dans notre custom node */}
-                <p> Mon node custom </p>
-                <p>{data.tokenAddress}</p>
-                <p>{data.tokenId}</p>
-                <Asset
+             <Card sx={{ }}
+        onClick={()=>{window.open( `https://polygonscan.com/token/${data.tokenAddress}?a=${data.tokenId}`
+        )}}>
+        <CardActionArea>
+        <Box sx={{
+            display: 'flex',
+           
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center'}}>
+            
+        <Asset
                     address={data.tokenAddress}
                     tokenId={data.tokenId}
                     preset="extraSmall"
@@ -29,13 +36,23 @@ function NftCardNode({ data, isConnectable }) {
                     loading={<div>Loading...</div>}
                     chain="polygon"
                 /> 
-            </div>
-            <Handle
+        </Box>
+          <CardContent>
+          <div><Typography gutterBottom variant="h5" component="div"> {"TokenID"} </Typography>  <Typography variant="body1" color="text.secondary"> {data.tokenId}</Typography></div>
+          <div><Typography gutterBottom variant="h5" component="div"> {"TokenAddress"} </Typography>  <Typography variant="body1" color="text.secondary"> {data.tokenAddress}</Typography></div>
+
+  
+          </CardContent>
+        </CardActionArea>
+        </Card>
+
+        <Handle
                 type="source"
                 position={Position.Bottom}
                 isConnectable={isConnectable}
             />
-        </div>
+        
+        </Box>
     );
 }
 

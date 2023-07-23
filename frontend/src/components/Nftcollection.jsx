@@ -7,10 +7,10 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import NFTCard from "./NFTCard";
 import TransferDialog from "./TransferDialog";
 import MergeDialog from "./MergeDialog";
-
-const  Nftcollection=()=> {
+import Loading from "./Loading";
+const  Nftcollection=({address})=> {
     const ERC721Query = `query MyQuery($owner: [Identity!]) {
-        TokenBalances(input: {filter: {owner: {_in: $owner}}, blockchain: ethereum}) {
+        TokenBalances(input: {filter: {owner: {_in: $owner}}, blockchain: polygon}) {
           TokenBalance {
             tokenNfts {
               erc6551Accounts {
@@ -28,9 +28,9 @@ const  Nftcollection=()=> {
           }
         }
       }`;
-
+//address
     const variables = {
-        owner: "0xcf94ba8779848141d685d44452c975c2ddc04945",
+        owner: address,
     };
     const [filteredData, SetFilteredData] = useState([]);
     const [mode, setMode] = React.useState('');
@@ -95,7 +95,7 @@ const HandleOpenWindow =()=>{
     };
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <Loading></Loading>;
     }
 
     if (error) {
@@ -134,7 +134,7 @@ const HandleOpenWindow =()=>{
           )}
         </Grid>
       ))}
-           <Box sx={{background: 'linear-gradient(to right , #430089, #82ffa1)',
+           <Box sx={{
             display: 'flex',
             width:'30%',
           flexDirection: 'row',
@@ -143,7 +143,7 @@ const HandleOpenWindow =()=>{
           mx: 2}}>
 
              <ToggleButtonGroup
-          color="primary"
+             sx={{background: 'linear-gradient(to right , primary, seconday)'}}
           value={mode}
           exclusive
           onChange={handleChange}
@@ -151,7 +151,8 @@ const HandleOpenWindow =()=>{
         >
           <ToggleButton value="Merge">Merge</ToggleButton>
           <ToggleButton value="Transfer">Transfer</ToggleButton>
-        </ToggleButtonGroup><Button variant="contained" onClick={HandleOpenWindow} >Confirm</Button> </Box>
+        </ToggleButtonGroup>
+        <Button sx={{mx:2}} variant="contained" onClick={HandleOpenWindow} >Confirm</Button> </Box>
         <TransferDialog open={openDialogueTransfer} handleClose={handleCloseTransfer} handleSenfNFT={handleSenfNFT}></TransferDialog>
         <MergeDialog open={openDialogueMerge} handleClose={handleCloseMerge} handleMergeNFT={handleMergeNFT} ></MergeDialog>
         

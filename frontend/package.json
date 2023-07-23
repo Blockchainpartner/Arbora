@@ -7,8 +7,11 @@
   },
   "dependencies": {
     "@airstack/airstack-react": "^0.4.5",
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.5",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.1",
     "@web3modal/ethereum": "2.6.2",
@@ -16,6 +19,7 @@
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "reactflow": "^11.7.4",
     "viem": "1.2.5",
     "wagmi": "1.3.3"

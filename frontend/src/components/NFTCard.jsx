@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Checkbox  from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
     console.log(tokenNft,"TOKEN NFT")
@@ -21,7 +21,7 @@ export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
       
 console.log(tokenNft,"tokenNft")
     return (
-        <Card sx={{m:2,  }}
+        <Card sx={{m:2  }}
         onClick={()=>{window.open(`/nft/${tokenNft.erc6551Accounts[0].tokenAddress}/${tokenNft.erc6551Accounts[0].tokenId}`)}}>
         <CardActionArea>
         <div className="token-img-wrapper">
@@ -31,7 +31,7 @@ console.log(tokenNft,"tokenNft")
                 tokenId={tokenNft.erc6551Accounts[0].tokenId}
                 preset="small"
                 error={<div>Error loading asset.</div>}
-                chain={tokenNft.erc6551Accounts[0].tokenAddress.blockchain}
+                chain="polygon"
             />
         </div>
           <CardContent>

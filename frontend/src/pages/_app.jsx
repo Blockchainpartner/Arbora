@@ -7,10 +7,15 @@ import { Web3Modal } from "@web3modal/react";
 import { useEffect, useState } from "react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { mainnet, sepolia, polygon } from "wagmi/chains";
+import { CacheProvider } from '@emotion/react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+
+import createEmotionCache from '../utility/createEmotionCache';
+import MyTheme from '../styles/theme/MyTheme';
 import '../styles.css';
 import { init } from "@airstack/airstack-react";
 init("40ec4c9ceb0d4f7aa4e16db26074ad20");
-
+const clientSideEmotionCache = createEmotionCache();
 
 
 
@@ -37,7 +42,7 @@ const wagmiConfig = createConfig({
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
 
 // 4. Wrap your app with WagmiProvider and add <Web3Modal /> compoennt
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps ,emotionCache = clientSideEmotionCache}) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -48,7 +53,12 @@ export default function App({ Component, pageProps }) {
     <>
       {ready ? (
         <WagmiConfig config={wagmiConfig}>
-          <Component {...pageProps} />
+           <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={MyTheme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </CacheProvider>
         </WagmiConfig>
       ) : null}
 
