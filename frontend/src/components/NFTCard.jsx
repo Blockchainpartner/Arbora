@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Checkbox  from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import {  CardActionArea, FormControlLabel,Box } from '@mui/material';
 import React, {  useState } from "react";
 
 export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
@@ -18,14 +18,26 @@ export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
         }
         return array; // If the item is not found, return the original array
       };
-      
-console.log(tokenNft,"tokenNft")
+
+      const handleCheckboxClick = (event) => {
+        event.stopPropagation(); // Prevent the event from bubbling up to the card
+        // Your checkbox click logic here
+        setChecked( event.target.checked );
+        if(!checked)
+        {setSelectedNft(prev=>[...prev,tokenNft.erc6551Accounts[0].tokenId])}
+        else{
+            let newSelectedNFT = removeItemFromArray(selectedNft,tokenNft.erc6551Accounts[0].tokenId)
+            setSelectedNft(newSelectedNFT)
+        }
+     
+      };
     return (
-        <Card sx={{m:2  }}
+        <Card sx={{p:2,mx:4,height:"100%", }}
         onClick={()=>{window.open(`/nft/${tokenNft.erc6551Accounts[0].tokenAddress}/${tokenNft.erc6551Accounts[0].tokenId}`)}}>
         <CardActionArea>
+        <CardContent>
+
         <div className="token-img-wrapper">
-            
             <Asset
                 address={tokenNft.erc6551Accounts[0].tokenAddress}
                 tokenId={tokenNft.erc6551Accounts[0].tokenId}
@@ -34,7 +46,6 @@ console.log(tokenNft,"tokenNft")
                 chain="polygon"
             />
         </div>
-          <CardContent>
           <div><Typography gutterBottom variant="h5" component="div"> {"TokenID"} </Typography>  <Typography variant="body1" color="text.secondary"> {tokenNft.erc6551Accounts[0].tokenId}</Typography></div>
             {Object.keys(tokenNft.metaData).map((key) => (
        
@@ -44,26 +55,19 @@ console.log(tokenNft,"tokenNft")
           
         ))}
            
-  
+           {choiceActive &&              <FormControlLabel
+          control={<Checkbox onChange={handleCheckboxClick} />}
+          
+        />}
           </CardContent>
+        
+       
         </CardActionArea>
-        <CardActions sx={{ display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center'}}>
-        {choiceActive &&  <Checkbox checked={checked}
-          onChange={e => {
-            console.log(e.target.checked,"checked")
-            setChecked( e.target.checked );
-            if(!checked)
-            {setSelectedNft(prev=>[...prev,tokenNft.erc6551Accounts[0].tokenId])}
-            else{
-                let newSelectedNFT = removeItemFromArray(selectedNft,tokenNft.erc6551Accounts[0].tokenId)
-                setSelectedNft(newSelectedNFT)
-            }
-          }}  ></Checkbox>}
-        </CardActions>
+
+
+   
       </Card>
+
        
     );
 }

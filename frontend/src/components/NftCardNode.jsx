@@ -11,7 +11,7 @@ function NftCardNode({ data, isConnectable }) {
     }, []);
 
     return (
-        <Box elevation={2}>
+        <Box elevation={4} >
             <Handle
                 type="target"
                 position={Position.Top}
@@ -23,7 +23,7 @@ function NftCardNode({ data, isConnectable }) {
         <CardActionArea>
         <Box sx={{
             display: 'flex',
-           
+           m:2,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center'}}>
@@ -38,8 +38,8 @@ function NftCardNode({ data, isConnectable }) {
                 /> 
         </Box>
           <CardContent>
-          <div><Typography gutterBottom variant="h5" component="div"> {"TokenID"} </Typography>  <Typography variant="body1" color="text.secondary"> {data.tokenId}</Typography></div>
-          <div><Typography gutterBottom variant="h5" component="div"> {"TokenAddress"} </Typography>  <Typography variant="body1" color="text.secondary"> {data.tokenAddress}</Typography></div>
+          <div><Typography fontWeight={"bold"}gutterBottom variant="h5" component="div"> {"TokenID"} </Typography>  <Typography variant="body2" color="text.secondary"> {data.tokenId}</Typography></div>
+          <div><Typography fontWeight={"bold"}  gutterBottom variant="h5" component="div"> {"TokenAddress"} </Typography>  <Typography variant="h6" color="text.secondary"> {data.tokenAddress}</Typography></div>
 
   
           </CardContent>

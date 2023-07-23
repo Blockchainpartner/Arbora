@@ -1,25 +1,23 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box } from '@mui/material';
-
+import WalletIcon from '@mui/icons-material/Wallet';
 const WalletConnectCard = () => {
   return (
     <Box
       display="flex"
-      justifyContent="center"
+      justifyContent="right"
       alignItems="center"
       minHeight="100vh"
+      mr={20}
     >
       <Card>
         <CardContent>
             <Box sx={{m:4}}>
-        <Typography   textAlign="center"  variant="h2" component="div">
-            
-            Welcome to Arbora 
-          </Typography>
-          <Typography textAlign="center" variant="h6" component="div">
-
+  
+          <Typography sx={{mb:4}} textAlign="center" variant="h6" component="div">
             Please connect your wallet
           </Typography>
+          <WalletIcon fontSize="medium"color="primary"></WalletIcon>
           </Box>
         </CardContent>
       </Card>

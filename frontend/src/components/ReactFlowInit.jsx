@@ -41,7 +41,7 @@ const ReactFlowInit = ({ NFTArray }) => {
         let tempInitialNodes2 = [];
 
         for (let i = 0; i < NFTArray.length; i++) {
-            
+
             tempInitialNodes2.push({
                 id: NFTArray[i].id,
                 type: "nftCard",
@@ -56,7 +56,6 @@ const ReactFlowInit = ({ NFTArray }) => {
             });
         }
         return tempInitialNodes2;
-        //setInitialNodes2(tempInitialNodes2);
     };
 
     return (

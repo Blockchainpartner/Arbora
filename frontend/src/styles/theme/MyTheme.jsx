@@ -19,7 +19,7 @@ const MyTheme = createTheme({
       MuiButton: {
         styleOverrides: {
           contained: {
-            background: `linear-gradient(to left, #29a373, #007d93)`,
+            background: `linear-gradient(to left, primary, secondary)`,
           },
         },
       },
@@ -28,13 +28,13 @@ const MyTheme = createTheme({
     palette: {
       primary: {
         // light: will be calculated from palette.primary.main,
-        main: "#29a373",
+        main: "#494ae0",
         // dark: will be calculated from palette.primary.main,
         // contrastText: will be calculated to contrast with palette.primary.main
       },
       secondary: {
         // light: will be calculated from palette.secondary.main,
-        main: "#007d93",
+        main: "#1a003d",
         // dark: will be calculated from palette.secondary.main,
         // contrastText: will be calculated to contrast with palette.secondary.main
       },

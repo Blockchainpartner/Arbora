@@ -22,7 +22,7 @@ const  Nftcollection=({address})=> {
               }
               metaData {
                 name
-                description
+                
               }
             }
           }
@@ -90,10 +90,10 @@ const HandleOpenWindow =()=>{
     }, [data]);
 
     const filterData = (data) => {
-        const result = data.filter((nft) => nft.tokenNfts != null);
-        return chunkArray(result,4);
+        console.log(data,"this is data")
+        const result = data.filter((nft) => nft.tokenNfts.erc6551Accounts != null);
+        return result;
     };
-
     if (loading) {
         return <Loading></Loading>;
     }
@@ -101,62 +101,57 @@ const HandleOpenWindow =()=>{
     if (error) {
         return <p>Error: {error.message}</p>;
     }
-
-    const chunkArray = (arr, chunkSize) => {
-        const chunkedArr = [];
-        for (let i = 0; i < arr.length; i += chunkSize) {
-          chunkedArr.push(arr.slice(i, i + chunkSize));
-        }
-        return chunkedArr;
-      };
+      console.log(filteredData)
     return (
-    <Box sx={{m:12,display: 'flex',
+    <Box sx={{ml:12,mt:12,display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center' ,textAlign:'center'}}>
-        {filteredData.map((row, index) => (
-        <Grid key={index} container spacing={1}>
-          {row.map((nft,indexou) =>
-{      
-
-        return ( 
-            <Grid key={indexou} item xs={3} sm={3} md={3} >
+<Box sx={{display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center' ,textAlign:'center'}}>
+        {filteredData.map((nft, index) => {  return ( 
+            <Box>
                <NFTCard 
-               key={(indexou+2)*(index+10)}
+               key={index}
                tokenNft={nft.tokenNfts}
                choiceActive={choiceActive}
                setSelectedNft={setSelectedNft}
                selectedNft={selectedNft}
                 ></NFTCard>
-            </Grid>
-          )}
-          
-          )}
-        </Grid>
-      ))}
-           <Box sx={{
-            display: 'flex',
-            width:'30%',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center' ,
-          mx: 2}}>
-
+            </Box>
+          )})}
+          </Box>
              <ToggleButtonGroup
-             sx={{background: 'linear-gradient(to right , primary, seconday)'}}
+             sx={{my:3,background: 'linear-gradient(to right , primary, seconday)'}}
           value={mode}
           exclusive
           onChange={handleChange}
           aria-label="Platform"
         >
-          <ToggleButton value="Merge">Merge</ToggleButton>
-          <ToggleButton value="Transfer">Transfer</ToggleButton>
+          <ToggleButton       sx={{
+        backgroundColor: 'white', // Replace this with your desired background color
+        '&.Mui-selected': {
+          backgroundColor: '#572ba7', // Replace this with the background color when the button is selected
+        },
+        '&:hover': {
+          backgroundColor: '#494ae0', // Replace this with the background color on hover
+        },
+      }}value="Merge">Merge</ToggleButton>
+          <ToggleButton        sx={{
+        backgroundColor: 'white', // Replace this with your desired background color
+        '&.Mui-selected': {
+          backgroundColor: '#572ba7', // Replace this with the background color when the button is selected
+        },
+        '&:hover': {
+          backgroundColor: '#494ae0', // Replace this with the background color on hover
+        },
+      }} value="Transfer">Transfer</ToggleButton>
         </ToggleButtonGroup>
-        <Button sx={{mx:2}} variant="contained" onClick={HandleOpenWindow} >Confirm</Button> </Box>
+        <Button sx={{mx:2,px:3,mb:4}} variant="contained" onClick={HandleOpenWindow} >Confirm</Button> 
         <TransferDialog open={openDialogueTransfer} handleClose={handleCloseTransfer} handleSenfNFT={handleSenfNFT}></TransferDialog>
         <MergeDialog open={openDialogueMerge} handleClose={handleCloseMerge} handleMergeNFT={handleMergeNFT} ></MergeDialog>
-        
-        
            </Box>
     
     );
