@@ -29,16 +29,17 @@ export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
             let newSelectedNFT = removeItemFromArray(selectedNft,tokenNft.erc6551Accounts[0].tokenId)
             setSelectedNft(newSelectedNFT)
         }
-     
+        event.stopPropagation()
       };
     return (
-        <Card sx={{p:2,mx:4,height:"100%", }}
-        onClick={()=>{window.open(`/nft/${tokenNft.erc6551Accounts[0].tokenAddress}/${tokenNft.erc6551Accounts[0].tokenId}`)}}>
-        <CardActionArea>
-        <CardContent>
+        <Card  sx={{p:2,mx:4,height:"100%", }}
+     >
+        <CardContent >
+        <CardActionArea onClick={()=>{window.open(`/nft/${tokenNft.erc6551Accounts[0].tokenAddress}/${tokenNft.erc6551Accounts[0].tokenId}`)} }>
 
+        
         <div className="token-img-wrapper">
-            <Asset
+            <Asset 
                 address={tokenNft.erc6551Accounts[0].tokenAddress}
                 tokenId={tokenNft.erc6551Accounts[0].tokenId}
                 preset="small"
@@ -46,6 +47,7 @@ export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
                 chain="polygon"
             />
         </div>
+        
           <div><Typography gutterBottom variant="h5" component="div"> {"TokenID"} </Typography>  <Typography variant="body1" color="text.secondary"> {tokenNft.erc6551Accounts[0].tokenId}</Typography></div>
             {Object.keys(tokenNft.metaData).map((key) => (
        
@@ -55,16 +57,16 @@ export function NFTCard({tokenNft,choiceActive,setSelectedNft,selectedNft} ) {
           
         ))}
            
-           {choiceActive &&              <FormControlLabel
-          control={<Checkbox onChange={handleCheckboxClick} />}
-          
-        />}
+           </CardActionArea>
           </CardContent>
         
        
-        </CardActionArea>
+      
 
-
+        {choiceActive &&  <FormControlLabel
+          control={<Checkbox onChange={handleCheckboxClick} />}
+          
+        />}
    
       </Card>
 
